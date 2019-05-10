@@ -25,6 +25,7 @@ public class baseballGame {
 	
 	public static void main(String[] args) {
 		baseballGame game = new baseballGame();
+		GameWindow window = new GameWindow();
 		
 		while(true) {
 			
