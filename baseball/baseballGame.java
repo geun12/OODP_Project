@@ -1,7 +1,8 @@
-
 package baseball;
 
 import java.util.*;
+import java.awt.*;
+
 
 
 public class baseballGame {
@@ -12,7 +13,9 @@ public class baseballGame {
 	private ArrayList<String> resultList;     //공을 던진 후의 결과를 모아놓은 리스트.
 	
 	protected int inning;  //현재 이닝.
-
+	
+	private baseBallG frame=new baseBallG();
+	
 	protected boolean isGameOver;  //게임 종료 여부.
 	protected int strike;  //스트라이크
 	protected int ball; // 볼.
@@ -107,6 +110,7 @@ public class baseballGame {
 		printGameScreen();
 
 			if(result.equals("스트라이크")){
+				frame.CStrike(Color.red);
 				strike++;	
 
 				//2 스트라이크 였으면, 
