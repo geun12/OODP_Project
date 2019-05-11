@@ -6,34 +6,35 @@ import java.util.*;
 import java.text.*;  
 import javax.swing.*;
 
-public class baseBallG extends JApplet implements Runnable{
+
+public class baseBallG extends JFrame{
 		
 	   ScoreTable sTable;
 	   
-	   public void init() {  
-		
-	   }  
-	  
-	   public void start() {  
+	   public baseBallG() {
+		   super("ContentPane Example");
+		   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		   
+		   
+		   JFrame f=new JFrame();//creating instance of JFrame  
+	          
+		   f.setContentPane(new PaintPane());
+		   f.setSize(500,600);//400 width and 500 height  
+		   f.setLayout(null);//using no layout managers  
+
+		   f.setVisible(true);
+		  }
 	   
-	   }  
-	  
-	    
-	   public void run() {  
-	     
-	   }  
-	  
-	    
+	 
+	   
+	  @Override
 	  public void paint( Graphics g ) {  
 		  
-		  //Canvas Size
-		  this.setSize(500, 500);
-		  
+		  super.paint(g);
 		  
 		  //필드 전체 그리기 
 		      Graphics2D outField = (Graphics2D)g.create();
 		      Color groundColor = new Color(180, 104, 1);
-				setForeground(groundColor);
 				outField.fillArc(0,200,500,500,45,90);
 			
 			//내야 필드
@@ -91,3 +92,5 @@ public class baseBallG extends JApplet implements Runnable{
 	  
 	
 }
+
+
