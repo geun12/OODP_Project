@@ -18,7 +18,7 @@ public class baseBallG extends JFrame{
 		   
 		   JFrame f=new JFrame();//creating instance of JFrame  
 	          
-		   f.setContentPane(new PaintPane());
+		   f.setContentPane(new Container());
 		   f.setSize(500,600);//400 width and 500 height  
 		   f.setLayout(null);//using no layout managers  
 

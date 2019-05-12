@@ -1,4 +1,5 @@
 
+
 package baseball;
 
 import java.util.*;
@@ -23,44 +24,9 @@ public class baseballGame {
 	private int[][] scoreBoard = new int[2][11];	//스코어보드
 	
 	
-	public static void main(String[] args) {
-		baseballGame game = new baseballGame();
-		GameWindow window = new GameWindow();
-		
-		while(true) {
-			
-			game.printMenuScreen();
-			
-			Scanner scan = new Scanner(System.in);  // Create a Scanner object
-			
-			int cmd = scan.nextInt();
-			
-			switch(cmd){
-			case 1: 
-				game.gameStart();
-				break;
-			case 2:
-				game.exitProgram();
-				break;
-				default:
-					System.out.println("Wrong command!");
-				break;
-			}
-			
-			break;
-		    
-//			System.out.println("hi");
-//			try {
-//				Thread.sleep(1500);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-		}
-	}
-	
 	
 	public baseballGame(){
+
 		this.isGameOver = false;
 		this.strike = 0;
 		this.ball = 0;
@@ -454,5 +420,17 @@ public class baseballGame {
 		return result;
 		
 	}//end getInning()
+	
+	public int getScoreBoard(int a, int b) {
+		return scoreBoard[a][b];
+	}
+	
+	public team getTeam1() {
+		return t1;
+	}
+
+	public team getTeam2() {
+		return t2;
+	}
 
 }
