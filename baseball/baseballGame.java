@@ -2,10 +2,21 @@
 
 package baseball;
 
+import java.applet.*;
+import java.awt.*;
+import java.io.*;
 import java.util.*;
+import java.util.List;
+import java.text.*;  
+import javax.swing.*;
 
 
-public class baseballGame {
+
+
+import java.awt.event.*;
+
+public class baseballGame extends JPanel {
+	
 	protected team t1;   //팀 1번 
 	protected team t2;   //팀 2번 
 	
@@ -22,15 +33,30 @@ public class baseballGame {
 	protected String msg1; //메시지를 담는 변수. 
 	protected int gameFlag; //0이 되면 체인지, 1이 되면 
 	private int[][] scoreBoard = new int[2][11];	//스코어보드
-	
+	JFrame frame = new JFrame();
+    
+
+    JTextArea ta = new JTextArea();
+    TextAreaOutputStream taos = new TextAreaOutputStream( ta, 60 );
+    PrintStream ps = new PrintStream( taos );
+    
+
+
+
 	
 	
 	public baseballGame(){
-
 		this.isGameOver = false;
 		this.strike = 0;
 		this.ball = 0;
 		this.out = 0;
+		frame.add( new JLabel(" Outout" ), BorderLayout.NORTH );
+		System.setOut( ps );
+	    System.setErr( ps );
+	    frame.add( new JScrollPane( ta )  );
+	    frame.pack();
+	    frame.setVisible( true );
+	    frame.setSize(800,600);
 	}
 	//게임이 시작됬을 때의 함수
 	public void gameStart() {
@@ -42,6 +68,12 @@ public class baseballGame {
 		this.currentTeam = t1;
 
 		while(true) {
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			if(gameFlag == 0) {
 				this.plusInning();	//Inning 증
 
@@ -49,6 +81,7 @@ public class baseballGame {
 					break;
 
 				msg1 = currentTeam.playerList.get(0).getTeam()+"팀의 " + this.getInning() + "공격입니다.";
+
 				//FileIO.getInputString();
 				printGameScreen();
 				}
@@ -72,7 +105,7 @@ public class baseballGame {
 		
 		msg1 = result;
 		printGameScreen();
-
+			
 			if(result.equals("스트라이크")){
 				strike++;	
 
@@ -84,7 +117,7 @@ public class baseballGame {
 					currentTeam.nextBatter();//타자는 다음 타자로 교체.
 					out++; //아웃카운트 증가.
 					gameFlag = 1;
-					msg1 = "삼진 아웃!";
+					msg1 = "Strike Out!";
 					if(out == 3)
 					{
 						gameFlag = 0;
@@ -229,6 +262,7 @@ public class baseballGame {
 	}
 	
 	public void printGameScreen() { 
+		
 		System.out.printf("==============================================================\n");
 		System.out.printf(" 이닝  |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 |  R |  H |\n");
 		System.out.printf("==============================================================\n");
